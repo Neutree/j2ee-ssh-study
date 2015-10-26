@@ -35,6 +35,7 @@ public class HibernateSessionFactory {
 		} catch (Exception e) {
 			System.err.println("%%%% Error Creating SessionFactory %%%%");
 			e.printStackTrace();
+			System.out.println("error ");
 		}
     }
     private HibernateSessionFactory() {
@@ -72,7 +73,7 @@ public class HibernateSessionFactory {
 			serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
 			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 		} catch (Exception e) {
-			System.err.println("%%%% Error Creating SessionFactory %%%%");
+			System.err.println("%%%% Error Rebuild SessionFactory %%%%");
 			e.printStackTrace();
 		}
 	}
