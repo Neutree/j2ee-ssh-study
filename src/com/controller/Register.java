@@ -88,21 +88,20 @@ public class Register extends HttpServlet {
 		user.setUsername(username);
 		user.setUserpassword(password);
 		int result=0;
-		Session session=HibernateSessionFactory.getSession();
-		if(!session.isConnected())
-			result=-1;
+		Session session = null;
 		try{
+			session=HibernateSessionFactory.getSession();
 			session.beginTransaction();
 			session.save(user);
 			session.getTransaction().commit();
 			session.close();
 		}catch(HibernateException e){
-			if(!session.isConnected())
+			if(e.getMessage()=="Could not open connection")
 				result=-1;
 			else
-				result=2;
+				result=-2;
 		}
-		if (result!=-1&&result!=2)
+		if (result!=-1&&result!=-2)
 			result=1;
 		if(1==result)
 		{//Ìí¼Ó³É¹¦
