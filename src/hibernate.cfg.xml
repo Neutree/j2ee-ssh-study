@@ -20,11 +20,13 @@
 		<property name="myeclipse.connection.profile">
 			Remote_MySQL
 		</property>
-		
-		<property name="javax.persistence.validation.mode">none</property>
-		
+
+		<property name="javax.persistence.validation.mode">
+			none
+		</property>
+
 		<mapping resource="com/model/Userlist.hbm.xml" />
-		
+
 	</session-factory>
 
 </hibernate-configuration>

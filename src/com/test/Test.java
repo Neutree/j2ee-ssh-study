@@ -20,7 +20,7 @@ public class Test {
 //		System.out.println(user.getUsername()+"..."+user.getUserpassword());
 		
 		Userlist user2=new Userlist();
-		user2.setUsername("율율00율");
+		user2.setUsername("율율..율");
 		user2.setUserpassword("123456789");
 		
 		
