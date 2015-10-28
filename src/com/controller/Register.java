@@ -63,10 +63,10 @@ public class Register extends HttpServlet {
 			throws ServletException, IOException {
 		
 		Userlist user = new Userlist();
-		String username=request.getParameter("username").trim();//获取用户名
+		String username=request.getParameter("sign_name").trim();//获取用户名
 		username=handleString(username);//将用户名转换为中文格式
-		String password=request.getParameter("password").trim();//获取密码
-		String confirmpassword=request.getParameter("confirmpassword").trim();//获取密码确认值
+		String password=request.getParameter("sign_password").trim();//获取密码
+		String confirmpassword=request.getParameter("sign_confirm_password").trim();//获取密码确认值
 		if(!password.equals(confirmpassword))
 		{
 			response.setContentType("text/html");
