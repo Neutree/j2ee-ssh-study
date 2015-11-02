@@ -15,6 +15,7 @@ import org.hibernate.Session;
 
 import com.hebernate.HibernateSessionFactory;
 import com.model.Userlist;
+import com.model.UserlistDAO;
 
 
 public class Register extends HttpServlet {
@@ -76,7 +77,7 @@ public class Register extends HttpServlet {
 			out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 			out.println("<HTML>");
 			out.println("  <HEAD><TITLE>密码不同!<br></TITLE>");
-			out.println("<meta http-equiv=\"Refresh\" content=\"5;url=index.jsp\" /></HEAD>");
+			out.println("<meta http-equiv=\"Refresh\" content=\"5;url=join.jsp\" /></HEAD>");
 			out.println("  <BODY>");
 			out.println("两次密码不相同，5秒后返回");
 			out.println("  </BODY>");
@@ -85,16 +86,38 @@ public class Register extends HttpServlet {
 			out.close();
 			return ;
 		}
+		if(password.equals("")||username.equals(""))
+		{
+			response.setContentType("text/html");
+			response.setContentType("text/html; charset=utf-8");   
+			response.setCharacterEncoding("utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+			out.println("<HTML>");
+			out.println("  <HEAD><TITLE>密码不同!<br></TITLE>");
+			out.println("<meta http-equiv=\"Refresh\" content=\"5;url=join.jsp\" /></HEAD>");
+			out.println("  <BODY>");
+			out.println("输入为空，5秒后返回");
+			out.println("  </BODY>");
+			out.println("</HTML>");
+			out.flush();
+			out.close();
+			return ;
+		}
+		UserlistDAO userDAO = new UserlistDAO();
 		user.setUsername(username);
 		user.setUserpassword(password);
 		int result=0;
-		Session session = null;
+//		Session session = null;
 		try{
-			session=HibernateSessionFactory.getSession();
-			session.beginTransaction();
-			session.save(user);
-			session.getTransaction().commit();
-			session.close();
+//			session=HibernateSessionFactory.getSession();
+//			session.beginTransaction();
+//			session.save(user);
+//			session.getTransaction().commit();
+//			session.close();
+			
+			userDAO.save(user);//只修改了自动生成的DAO中的save成员函数和delete成员函数，使用其它的话也要修改才行，此处只是用一个举例
+			
 		}catch(HibernateException e){
 			if(e.getMessage()=="Could not open connection")
 				result=-1;

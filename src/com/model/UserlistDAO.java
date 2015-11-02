@@ -1,8 +1,10 @@
 package com.model;
 
 import java.util.List;
+
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +29,12 @@ public class UserlistDAO extends BaseHibernateDAO {
 	public void save(Userlist transientInstance) {
 		log.debug("saving Userlist instance");
 		try {
-			getSession().save(transientInstance);
+			Session session=getSession();
+			session.beginTransaction();//开始事务
+			session.save(transientInstance);
+			session.getTransaction().commit();//提交
+			session.flush();    //清空缓存  
+			session.close();
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
@@ -38,7 +45,13 @@ public class UserlistDAO extends BaseHibernateDAO {
 	public void delete(Userlist persistentInstance) {
 		log.debug("deleting Userlist instance");
 		try {
+			Session session=getSession();
+			session.beginTransaction();//开始事务
 			getSession().delete(persistentInstance);
+			session.getTransaction().commit();//提交
+			session.flush();    //清空缓存  
+			session.close();
+			
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
