@@ -21,9 +21,9 @@
 	<h1>SHARE NOTES LOG IN</h1>
 	<div class="login_">
 	
-		<form action="helpLogin" method="post" name="form">
-			<input type="text" value="" name="logname" class="transition8" placeholder="用户名" autofocus="autofocus" />
-			<br/><input type="password" name="logpassword" class="transition8" value="" placeholder="密码  长度大于5（不包含5）" />
+		<form action="save_success" method="post" name="form">
+			<input type="text" value="" name="userName" class="transition8" placeholder="用户名" autofocus="autofocus" />
+			<br/><input type="password" name="passWord" class="transition8" value="" placeholder="密码  长度大于5（不包含5）" />
 			<br/><input type="submit" class="transition8" value="登录"/>
 		</form>
 		<div class="forgot">

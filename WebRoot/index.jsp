@@ -21,8 +21,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <s:form action="userSignUp">
-    	<s:submit value="提交"/>
-    </s:form>
+    <form action="/join.jsp">
+    	<input type="submit" value="提交"/>
+    </form>
   </body>
 </html>

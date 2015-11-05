@@ -16,4 +16,10 @@ public class Userlist extends AbstractUserlist implements java.io.Serializable {
 		super(userpassword);
 	}
 
+	public Userlist(String userName, String passWord) {
+		// TODO Auto-generated constructor stub
+		this.setUsername(userName);
+		this.setUserpassword(passWord);
+	}
+
 }

@@ -5,9 +5,11 @@ import java.util.List;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -25,6 +27,16 @@ public class UserlistDAO extends BaseHibernateDAO {
 			.getLogger(UserlistDAO.class);
 	// property constants
 	public static final String USERPASSWORD = "userpassword";
+
+	private SessionFactory sessionFactory;
+	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public void save(Userlist transientInstance) {
 		log.debug("saving Userlist instance");
