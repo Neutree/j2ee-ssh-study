@@ -11,8 +11,8 @@
     
     <package name="userSignUpAction" extends="struts-default">
         <action name="userSignUp" class="userSignUpAction">
-            <result name="success">/succeed.jsp</result>
-            <result name="error">/failed.jsp</result>
+            <result name="success">/success.jsp</result>
+            <result name="error">/fail.jsp</result>
         </action>
     </package>
 

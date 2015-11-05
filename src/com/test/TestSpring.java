@@ -15,7 +15,12 @@ public class TestSpring {
 		
 		ApplicationContext ctx=new FileSystemXmlApplicationContext("src/applicationContext.xml");
 		UserManager uM=(UserManager)ctx.getBean("userManage");
-		uM.save(new Userlist("율율율율0", "hahaha"));
+		try {
+			uM.save(new Userlist("율율율", "hahaha"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

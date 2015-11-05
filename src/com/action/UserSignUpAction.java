@@ -53,9 +53,17 @@ public class UserSignUpAction extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 	
-		//userManamger.save(new Userlist(userName,passWord));
-	 if(passWord==passWord2&&!passWord.equals(""))
-	 	return "success";
+
+	 if(passWord.equals(passWord2)&&!passWord.equals(""))
+	 	{
+			 try{
+				 userManamger.save(new Userlist(userName, passWord));
+			 }catch(Exception e)
+			 {
+				 return "error";
+			 }			
+			 return "success";
+	 	}
 	 else
 		 return "error";
 	}
