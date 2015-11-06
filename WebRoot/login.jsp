@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*"  contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
+<jsp:useBean id="MessageBean" class="com.model.Message" scope="request"/>
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -18,10 +19,12 @@
 	<!--login form start here-->	
 	<!-- header -->
 	<jsp:include page="header.html"/>
-	<h1>SHARE NOTES LOG IN</h1>
+	<h1>TWENTY LOG IN</h1>
 	<div class="login_">
-	
-		<form action="save_success" method="post" name="form">
+		<div style="color:red;" >
+			<jsp:getProperty property="backNews" name="MessageBean"/>
+		</div>
+		<form action="signIn_login" method="post" name="form">
 			<input type="text" value="" name="userName" class="transition8" placeholder="用户名" autofocus="autofocus" />
 			<br/><input type="password" name="passWord" class="transition8" value="" placeholder="密码  长度大于5（不包含5）" />
 			<br/><input type="submit" class="transition8" value="登录"/>

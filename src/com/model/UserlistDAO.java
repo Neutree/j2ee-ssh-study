@@ -73,7 +73,6 @@ public class UserlistDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
-
 	public Userlist findById(java.lang.String id) {
 		log.debug("getting Userlist instance with id: " + id);
 		try {

@@ -22,4 +22,10 @@ public class Userlist extends AbstractUserlist implements java.io.Serializable {
 		this.setUserpassword(passWord);
 	}
 
+	@Override
+	public String toString() {
+		return "Userlist [getUsername()=" + getUsername()
+				+ ", getUserpassword()=" + getUserpassword() + "]";
+	}
+
 }

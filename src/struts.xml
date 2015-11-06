@@ -3,8 +3,10 @@
 <struts>
  	<package name="userActions" extends="struts-default">
         <action name="*_*" class="userAction" method="{1}">
-            <result name="success" type="redirect">/{2}.jsp</result>
-            <result name="error">/failed.jsp</result>
+            <result name="complete" >/{2}.jsp</result>   <!-- type="redirect" -->
+            <result name="success" >/{2}.jsp</result>
+            <result name="signInSuccess">/user.jsp</result>
+            <result name="error">/user.jsp</result>
         </action>
     </package>
     

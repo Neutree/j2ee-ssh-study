@@ -11,7 +11,9 @@
 
 
 	<!-- Spring管理Struts2的Action -->
-	<bean name="userAction" class="com.action.UserAction" scope="prototype"></bean>
+	<bean name="userAction" class="com.action.UserAction" scope="prototype">
+		<property name="userManager" ><ref bean="userManage"/></property> 
+	</bean>
 	<bean name="userSignUpAction" class="com.action.UserSignUpAction" scope="prototype">
 		<property name="userManamger" ><ref bean="userManage"/></property> 
 	</bean>

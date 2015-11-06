@@ -56,12 +56,8 @@ public class UserSignUpAction extends ActionSupport{
 
 	 if(passWord.equals(passWord2)&&!passWord.equals(""))
 	 	{
-			 try{
-				 userManamger.save(new Userlist(userName, passWord));
-			 }catch(Exception e)
-			 {
+			if(! userManamger.save(new Userlist(userName, passWord)))
 				 return "error";
-			 }			
 			 return "success";
 	 	}
 	 else
