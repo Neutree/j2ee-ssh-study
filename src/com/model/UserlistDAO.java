@@ -41,12 +41,14 @@ public class UserlistDAO extends BaseHibernateDAO {
 	public void save(Userlist transientInstance) {
 		log.debug("saving Userlist instance");
 		try {
-			Session session=getSession();
-			session.beginTransaction();//开始事务
-			session.save(transientInstance);
-			session.getTransaction().commit();//提交
-			session.flush();    //清空缓存  
-			session.close();
+//			Session session=getSession();
+//			session.beginTransaction();//开始事务
+//			session.save(transientInstance);
+//			session.getTransaction().commit();//提交
+//			session.flush();    //清空缓存  
+//			session.close();
+			getSession().save(transientInstance);
+			getSession().flush();    //清空缓存 使之立即执行事务，否则可能只是语句执行成功，但是事务没有执行 
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
@@ -57,13 +59,14 @@ public class UserlistDAO extends BaseHibernateDAO {
 	public void delete(Userlist persistentInstance) {
 		log.debug("deleting Userlist instance");
 		try {
-			Session session=getSession();
-			session.beginTransaction();//开始事务
+//			Session session=getSession();
+//			session.beginTransaction();//开始事务
+//			getSession().delete(persistentInstance);
+//			session.getTransaction().commit();//提交
+//			session.flush();    //清空缓存  
+//			session.close();
 			getSession().delete(persistentInstance);
-			session.getTransaction().commit();//提交
-			session.flush();    //清空缓存  
-			session.close();
-			
+			getSession().flush();    //清空缓存 使之立即执行事务，否则可能只是语句执行成功，但是事务没有执行
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
@@ -76,6 +79,7 @@ public class UserlistDAO extends BaseHibernateDAO {
 		try {
 			Userlist instance = (Userlist) getSession().get(
 					"com.model.Userlist", id);
+			getSession().flush();    //清空缓存 使之立即执行事务，否则可能只是语句执行成功，但是事务没有执行
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -90,6 +94,7 @@ public class UserlistDAO extends BaseHibernateDAO {
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
+			getSession().flush();    //清空缓存 使之立即执行事务，否则可能只是语句执行成功，但是事务没有执行
 			return results;
 		} catch (RuntimeException re) {
 			log.error("find by example failed", re);
@@ -105,6 +110,7 @@ public class UserlistDAO extends BaseHibernateDAO {
 					+ propertyName + "= ?";
 			Query queryObject = getSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
+			getSession().flush();    //清空缓存 使之立即执行事务，否则可能只是语句执行成功，但是事务没有执行
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
@@ -121,6 +127,7 @@ public class UserlistDAO extends BaseHibernateDAO {
 		try {
 			String queryString = "from Userlist";
 			Query queryObject = getSession().createQuery(queryString);
+			getSession().flush();    //清空缓存 使之立即执行事务，否则可能只是语句执行成功，但是事务没有执行
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
@@ -132,6 +139,7 @@ public class UserlistDAO extends BaseHibernateDAO {
 		log.debug("merging Userlist instance");
 		try {
 			Userlist result = (Userlist) getSession().merge(detachedInstance);
+			getSession().flush();    //清空缓存 使之立即执行事务，否则可能只是语句执行成功，但是事务没有执行
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -144,6 +152,7 @@ public class UserlistDAO extends BaseHibernateDAO {
 		log.debug("attaching dirty Userlist instance");
 		try {
 			getSession().saveOrUpdate(instance);
+			getSession().flush();    //清空缓存 使之立即执行事务，否则可能只是语句执行成功，但是事务没有执行
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);
@@ -155,6 +164,7 @@ public class UserlistDAO extends BaseHibernateDAO {
 		log.debug("attaching clean Userlist instance");
 		try {
 			getSession().buildLockRequest(LockOptions.NONE).lock(instance);
+			getSession().flush();    //清空缓存 使之立即执行事务，否则可能只是语句执行成功，但是事务没有执行
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);
